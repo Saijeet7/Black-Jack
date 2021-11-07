@@ -11,6 +11,8 @@ const hitSound = new Audio('static/sounds/swish.m4a');
 
 document.querySelector('#blackjack-hit-button').addEventListener('click', blackjackHit);
 
+document.querySelector('#blackjack-deal-button').addEventListener('click', blackjackDeal);
+
 function blackjackHit(){
     showCard(YOU);
 }
@@ -22,4 +24,14 @@ function showCard(activePlayer){
     hitSound.play();
 }
 
+function blackjackDeal(){
+    let yourImages = document.querySelector('#your-box').querySelectorAll('img');
+    let dealerImages = document.querySelector('#dealer-box').querySelectorAll('img');
+     for (let i =0; i<=yourImages.length; i++){
+         yourImages[i].remove();
+     };
 
+    for (let j =0; j<=dealerImages.length; j++){
+        dealerImages[j].remove();
+    };
+}
