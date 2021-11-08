@@ -10,6 +10,8 @@ const YOU = blackjackGame['you']
 const DEALER = blackjackGame['dealer']
 
 const hitSound = new Audio('static/sounds/swish.m4a');
+const winSound = new Audio('static/sounds/cash.mp3');
+const lossSound = new Audio('static/sounds/aww.mp3');
 
 document.querySelector('#blackjack-hit-button').addEventListener('click', blackjackHit);
 
@@ -39,7 +41,7 @@ function showCard(card,activePlayer){
 }
 
 function blackjackDeal(){
-    computeWinner();
+    showResult(computeWinner());
     YOU['score']=0;
     DEALER['score']=0;
     document.querySelector('#your-blackjack-result').textContent = 0;
@@ -116,4 +118,23 @@ function computeWinner(){
 
     console.log('Winner is',winner);
     return winner;
+}
+
+function showResult(winner) {
+    let message, messageColor;
+    if (winner===YOU){
+        message = 'You won!';
+        messageColor = 'green';
+        winSound.play();
+    } else if (winner === DEALER){
+        message= 'You lost!';
+        messageColor = 'red';
+        lossSound.play();
+    }else{
+        message = 'You drew';
+        messageColor = 'black';
+    }
+
+    document.querySelector('#blackjack-result').textContent = message;
+    document.querySelector('#blackjack-result').style.color = messageColor;
 }
