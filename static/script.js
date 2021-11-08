@@ -36,15 +36,26 @@ function showCard(card,activePlayer){
 }
 
 function blackjackDeal(){
+
+    YOU['score']=0;
+    DEALER['score']=0;
+    document.querySelector('#your-blackjack-result').textContent = 0;
+    document.querySelector('#dealer-blackjack-result').textContent = 0;
+
+    document.querySelector('#your-blackjack-result').style.color ="#ffffff";
+    document.querySelector('#dealer-blackjack-result').style.color ="#ffffff";
+
+
     let yourImages = document.querySelector('#your-box').querySelectorAll('img');
     let dealerImages = document.querySelector('#dealer-box').querySelectorAll('img');
-     for (let i =0; i<=yourImages.length; i++){
+     for (i =0; i<=yourImages.length; i++){
          yourImages[i].remove();
      };
 
-    for (let j =0; j<=dealerImages.length; j++){
+    for (j =0; j<=dealerImages.length; j++){
         dealerImages[j].remove();
-    };
+    }
+
 }
 
 function updateScore(card, activePlayer){
