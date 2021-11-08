@@ -39,7 +39,7 @@ function showCard(card,activePlayer){
 }
 
 function blackjackDeal(){
-
+    computeWinner();
     YOU['score']=0;
     DEALER['score']=0;
     document.querySelector('#your-blackjack-result').textContent = 0;
@@ -90,3 +90,30 @@ function dealerLogic(){
     showScore(DEALER);
 }
 
+// Compute winner and return who just won
+function computeWinner(){
+    let winner;
+    if (YOU['score']<=21){
+        //Contion: Higher Score than dealer or when dealer busts 
+        if(YOU['score']>DEALER['score']|| DEALER['score']>21){
+            console.log('You Won!');
+            winner = YOU;
+        } else if(YOU['score']<DEALER['score']){
+            console.log('loss');
+            winner = DEALER;
+        }else if(YOU['score']===DEALER['score']){
+            console.log('You drew!');
+
+        }
+    //condition When user busts but dealer doesn't
+    }else if(YOU['score']>21 && DEALER['score']<=21){
+        console.log('You lost!');
+        winner = DEALER;
+    //Condtion when both bust
+    }else if(YOU['score']>21 && DEALER['score']>21){
+        console.log('You drew');
+    }
+
+    console.log('Winner is',winner);
+    return winner;
+}
