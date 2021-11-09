@@ -41,7 +41,6 @@ function showCard(card,activePlayer){
 }
 
 function blackjackDeal(){
-    showResult(computeWinner());
     YOU['score']=0;
     DEALER['score']=0;
     document.querySelector('#your-blackjack-result').textContent = 0;
@@ -90,6 +89,11 @@ function dealerLogic(){
     showCard(card, DEALER);
     updateScore(card, DEALER);
     showScore(DEALER);
+
+    if (DEALER['score']>15){
+        let winner = computeWinner();
+        showResult(winner);
+    }
 }
 
 // Compute winner and return who just won
@@ -138,3 +142,4 @@ function showResult(winner) {
     document.querySelector('#blackjack-result').textContent = message;
     document.querySelector('#blackjack-result').style.color = messageColor;
 }
+
